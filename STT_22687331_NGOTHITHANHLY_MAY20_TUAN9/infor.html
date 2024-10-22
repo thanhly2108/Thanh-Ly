@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px auto;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        table {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Infor</h1>
+    <table border="1">
+        <tr>
+            <th colspan="2">THONG TIN DANG NHAP</th>
+        </tr>
+        <tr>
+            <td>User Name</td>
+            <td id="us">AAAA</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td id="pw">BBBB</td>
+        </tr>
+        <tr>
+            <td>Gioi Tinh</td>
+            <td id="gen">DDDD</td>
+        </tr>
+        <tr>
+            <td>Cafe ban chon</td>
+            <td id="cf">CCCC</td>
+        </tr>
+    </table>
+</body>
+<script>
+    var gt1, gt2;
+    gt1 = localStorage.getItem("us");
+    gt2 = localStorage.getItem("pd");
+    gt3 = localStorage.getItem("cf");
+    gt4 = localStorage.getItem("gt");
+    document.getElementById("us").innerHTML = gt1;
+    document.getElementById("pw").innerHTML = gt2;
+    document.getElementById("cf").innerHTML = gt3;
+    document.getElementById("gen").innerHTML = gt4;
+</script>
+
+</html>
