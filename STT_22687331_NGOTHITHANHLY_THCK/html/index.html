@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <img src="../HEADER.PNG" alt="" class="w-100">
+        </div>
+        <div class="row">
+            <nav class="nav">
+                <a class="nav-link active" aria-current="page" href="#">Đăng nhập</a>
+                <a class="nav-link" href="#" id="dangki">Đăng ký</a>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4>DANH SÁCH THAM GIA ĐỘI ROBOCON KHOA CNTT</h4>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã thành viên</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Lớp</th>
+                    <th scope="col">Ngày tham gia</th>
+                    <th scope="col">Điện thoại</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody id="than">
+            </tbody>
+        </table>
+        <footer>
+            <div class="row text-center">
+                <div class="col-4">
+                    <h5>SVTH: Ngo Thi Thanh Ly</h5>
+                </div>
+                <div class="col-4">
+                    <h5>Mã số sinh viên: 22687331</h5>
+                </div>
+                <div class="col-4">
+                    <h5>Lớp: DHTMDT18C</h5>
+                </div>
+            </div>
+        </footer>
+        <div class="modal fade" id="bang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="staticBackdropLabel">THONG TIN CA NHAN</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Mã thành viên:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="vien">
+                                <span id="loivien">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Họ tên:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="ten">
+                                <span id="loiten">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Lớp:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="lop">
+                                <span id="loilop">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Ngày tham gia:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="datetime" class="form-control" id="ngay">
+                                <span id="loilop">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Điện thoại:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="data" class="form-control" id="so">
+                                <span id="loiso">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="">Email:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="email" class="form-control" id="meo">
+                                <span id="loimeo">*</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success w-100" id="gui">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#dangki").click(function() {
+                    $("#bang").modal();
+                });
+                $("#vien").val("K16-123456789");
+                $("#ten").val("Tran Anh Dung");
+                $("#lop").val("DHKTPM16BTT");
+                $("#ngay").val("mm/dd/yyyy")
+                $("#so").val("0xxx-xxx-xxx");
+                $("#meo").val("xxxxx@iuh.edu.vn ");
+
+                function validatevien() {
+                    let vien = $("#vien").val();
+                    let validatevien = /^K16\-\d{9}$/;
+                    if (vien === "") {
+                        $("#loivien").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (!validatevien.test(vien)) {
+                            $("#loivien").html("bao loi");
+                            return false;
+
+                        } else {
+                            $("#loivien").html("*");
+                            return true;
+                        }
+                    }
+                }
+
+                function validateten() {
+                    let ten = $("#ten").val();
+                    let validateten = /^[A-Z][a-z]+(\s[A-Z][a-z]+)+$/;
+                    if (vien === "") {
+                        $("#loiten").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (!validateten.test(ten)) {
+                            $("#loiten").html("bao loi");
+                            return false;
+
+                        } else {
+                            $("#loiten").html("*");
+                            return true;
+                        }
+                    }
+                }
+
+                function validatelop() {
+                    let lop = $("#lop").val();
+                    let validatelop = /^[A-Z0-9]{11}$/;
+                    if (lop === "") {
+                        $("#loilop").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (!validatelop.test(lop)) {
+                            $("#loilop").html("bao loi");
+                            return false;
+                        } else {
+                            $("#loilop").html("*");
+                            return true;
+                        }
+                    }
+                }
+
+                function validateso() {
+                    let so = $("#so").val();
+                    let validateso = /^0[0-9]{3}\-[0-9]{3}\-[0-9]{3}$/;
+                    if (so === "") {
+                        $("#loiso").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (!validateso.test(so)) {
+                            $("#loiso").html("bao loi");
+                            return false;
+
+                        } else {
+                            $("#loiso").html("*");
+                            return true;
+                        }
+                    }
+                }
+
+                function validatemeo() {
+                    let meo = $("#meo").val();
+                    let validatemeo = /^0\d+\@iuh\.edu\.vn$/;
+                    if (meo === "") {
+                        $("#loimeo").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (!validatemeo.test(meo)) {
+                            $("#loimeo").html("bao loi");
+                            return false;
+
+                        } else {
+                            $("#loimeo").html("*");
+                            return true;
+                        }
+                    }
+                }
+
+                function validatengay() {
+                    let ngay = $("#ngay").val();
+                    let ngayht = new Date(ngay);
+                    let ngayhientai = new Date();
+                    let sau30ngay = new Date(ngayhientai);
+                    sau30ngay.setDate(ngayhientai.getDate() + 30);
+                    if (ngay === "") {
+                        $("#loingay").html("Bat buoc nhap");
+                        return false;
+                    } else {
+                        if (ngayht < sau30ngay) {
+                            $("#loingay").html("bao loi");
+                            return false;
+
+                        } else {
+                            $("#loingay").html("*");
+                            return true;
+                        }
+                    }
+                }
+                let i = 1
+                $("#vien").blur(validatevien);
+                $("#ten").blur(validateten);
+                $("#lop").blur(validatelop);
+                $("#so").blur(validateso);
+                $("#meo").blur(validatemeo);
+                $("#ngay").blur(validatengay);
+                $("#gui").click(function(e) {
+                    e.preventDefault();
+                    let vien = $("#vien").val();
+                    let ten = $("#ten").val();
+                    let lop = $("#lop").val();
+                    let so = $("#so").val();
+                    let meo = $("#meo").val();
+                    let ngay = $("#ngay").val();
+                    let row = " <tr>  <td>" + i + "</td>  <td>" + vien + "</td> <td>" + ten + "</td> <td>" + lop + "</td> <td>" + ngay + "</td> <td>" + so + "</td> <td>" + meo + "</td>                                                                 </tr>                               ";
+                    $("#than").append(row);
+                    i++;
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>
